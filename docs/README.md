@@ -15,5 +15,5 @@ clone the project and find file "dtrees.py" in src.
 - classify a new datapoint 'x', which is a DataFrame, using Decision-Tree "tree":\
 ```tree.classify(x)```
 
-## Example
+## Example: Decision Tree for the data set "weather2.csv"
 ![Screenshot](/docs/images/dtree.png)
