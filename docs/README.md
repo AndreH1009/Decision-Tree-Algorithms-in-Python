@@ -8,12 +8,12 @@ In this project I implement Decision-Trees using common algorithm schemes like t
 ## How To
 - access the project:\
 clone the project and find file "dtrees.py" in src.
-- generate a Decision Tree on DataFrame df using 'play' as the classification attribute:
+- generate a Decision Tree on DataFrame 'df' using 'play' as the classification attribute:\
 ```tree = build_decision_tree(df, 'play')```
-- create file "dtree.pdf" containing a graphical representation of the tree:
+- create file "dtree.pdf" containing a graphical representation of the tree:\
 ```visualize_tree(tree)```
-- classify a new datapoint x, which is a DataFrame, using Decision-Tree "tree":
-````tree.classify(x)```
+- classify a new datapoint 'x', which is a DataFrame, using Decision-Tree "tree":\
+```tree.classify(x)```
 
 ## Example
 ![Screenshot](/docs/images/dtree.png)
