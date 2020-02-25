@@ -137,38 +137,6 @@ def build_decision_tree(tdata, key_attr):
     return root
 
 
-# generate the latex code to fractionally display the prevalance of the classes in the given node
-def code_stats(node):
-    latex_cols = ['black', 'blue', 'brown', 'cyan', 'darkgray', 'gray', 'green', 'lightgray', 'lime', 'magenta', 'olive', 'orange', 'ink', 'purple', 'red', 'teal', 'violet', 'yellow']
-    # distinguish between binary ands poly-ary classification
-    colors = dict.fromkeys(node.content[node.key].unique())
-    if len(colors) == 2:
-        if 'yes' in colors and 'no' in colors:
-            colors['yes'] = 'green'
-            colors['no'] = 'red'
-            code = r'\\ \nicefrac{{\textcolor{c1}{n1} }{\textcolor{c2}{n2} }}'.format(
-                c1=colors['yes'], c2=colors['no'], n1=node.values['yes'], n2=node.values['no'])
-        elif 1 in colors and 0 in colors:
-            colors[1] = 'green'
-            colors[0] = 'red'
-            code = r'\\ \nicefrac{{\textcolor{c1}{n1} }{\textcolor{c2}{n2} }}'.format(
-                c1=colors[1], c2=colors[0], n1=node.values[1], n2=node.values[0])
-        else:
-            for v in colors:
-                colors[v] = random.choice(latex_cols)
-                latex_cols.remove(colors[v])
-            code = r'\\ \nicefrac{{\textcolor{c1}{n1} }{\textcolor{c2}{n2} }}'.format(
-                c1=colors[node.values.keys()[0]], c2=colors[node.values.keys()[1]], n1=node.values[node.values.keys()[0]], n2=node.values[node.values.keys()[1]])
-    elif len(colors) < 19:
-        for v in colors:
-            colors[v] = random.choice(latex_cols)
-            latex_cols.remove(colors[v])
-        code = r'\\'
-        for v in colors:
-            code + r' \textbackslash \textcolor{{{c}}}{{{val}}}'.format(c=colors[v], val=v)
-    return code
-
-
 # create the code to visualize a decision tree in latex.
 # nodes is a list of Tree objects
 def make_body(nodes):
@@ -239,6 +207,7 @@ def visualize_tree(root):
 
 
 ############
-df = pd.read_csv("weather2.csv")
-tree = build_decision_tree(df, 'play')
-visualize_tree(tree)
+if __name__ == "__main__":
+    df = pd.read_csv("weather2.csv")
+    tree = build_decision_tree(df, 'play')
+    visualize_tree(tree)
